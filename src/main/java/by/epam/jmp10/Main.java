@@ -26,6 +26,7 @@ public class Main {
             new Thread(() -> {
                 Connection conn = null;
                 Statement stmt = null;
+                long startTime = System.currentTimeMillis();
                 try{
                     conn = DriverManager.getConnection(DB_URL, USER, PASS);
                     conn.setAutoCommit(false);
@@ -76,6 +77,8 @@ public class Main {
                         se.printStackTrace();
                     }
                 }
+                long endTime = System.currentTimeMillis();
+                System.out.println("Execution time of " + Thread.currentThread().getName() + " : " + (endTime - startTime));
             }).start();
         }
     }
